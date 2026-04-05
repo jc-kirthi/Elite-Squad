@@ -1,44 +1,132 @@
-# Pollution Forecasting using Physics-Informed AI  
+# Elite Squad
 
-## Theme  
-**Physics-Informed Machine Learning for Environmental Forecasting**
-
-This project is developed under **Theme 2: Pollution Forecasting**, focusing on combining **machine learning with physical laws** to improve prediction reliability and robustness.
+A **Physics-Informed Deep Learning Model** for accurate air pollution forecasting using hybrid AI + scientific principles.
 
 ---
 
-## Problem Statement  
-Air pollution forecasting is a complex spatio-temporal problem influenced by meteorological and environmental factors such as wind, temperature, and boundary layer dynamics.  
+## Problem Statement
 
-Traditional models (LSTM, XGBoost, Transformers) treat pollution as a pure time-series task and fail during **rare extreme events** like dust storms, firecracker spikes, and thermal inversions due to poor representation in training data.
+Air pollution forecasting (PM2.5) is highly complex due to:
+- Spatio-temporal dependencies  
+- Weather influence (wind, rain, temperature)  
+- Physical transport processes  
+
+Traditional ML models:
+- Treat it as simple time-series ❌  
+- Fail in real-world dynamic conditions ❌  
 
 ---
 
-## Solution  
-We propose a **Hybrid Physics-Informed AI Framework** that combines deep learning with atmospheric physics.  
+## Our Solution
 
-The model integrates data-driven predictions with physical principles (e.g., inverse relationship between pollution and PBLH) to improve robustness, especially during extreme events.
+We propose a **Hybrid Physics + AI Model** that combines:
+
+-  Deep Learning (Neural Networks)
+-  Advection-Diffusion Physics
+-  Global Attention Mechanism
+
+This allows the model to:
+- Capture long-range dependencies  
+- Simulate pollutant transport  
+- Improve generalization across environments  
 
 ---
 
-## 🏗️ Approach  
+##  Model Architecture
 
-- Train multiple models:
-  - **GNN** → captures spatial dependencies  
-  - **Transformer** → captures temporal/global patterns  
+### 🔹 Key Components
 
-- Combine predictions using **weighted ensemble**  
-```python
-final_ensemble = 0.7 * GNN + 0.3 * Transformer
+1. **Feature Extraction Layer**
+   - CNN-based spatial learning  
+
+2. **Physics Module**
+   - Advection-Diffusion modeling using wind vectors  
+
+3. **Global Attention**
+   - Transformer-style learning for long-range dependencies  
+
+4. **Reconstruction Layer**
+   - Converts learned features into PM2.5 predictions  
+
+---
+
+
+## Dataset
+
+Multi-variable atmospheric dataset including:
+- PM2.5  
+- Temperature  
+- Wind (U, V)  
+- Rain  
+- Pressure  
+- Emissions  
+
+Training conducted across multiple months:
+- April  
+- July  
+- October  
+- December  
+
+---
+
+## How to Run
+
+### 🔹 1. Clone Repository
+
+```bash
+git clone https://github.com/jc-kirthi/Elite-Squad.git
+cd Elite-Squad
+
 ```
+### 🔹2. Install Dependencies
 
-Apply physics-based correction using PBLH:
+```bash
+Install Dependencies
+```
+### 🔹3. Run Training
 
-final_prediction = base_prediction * (critical_height / (pblh + 10))
+```bash
+3. Run Training
+```
+### 🔹4. Run Inference
 
-Use smoothing and clipping to ensure stable and realistic outputs
+```bash
+4. Run Inference
+```
+## Usage (Load Model):
+```bash
+import torch
+from model import GeniusChildNet
 
----
+model = GeniusChildNet()
+model.load_state_dict(torch.load("best_physics_model.pt"))
+model.eval()
+```
+## Output
+Generates PM2.5 predictions
 
-## Final pipeline:
-Deep Learning Models → Ensemble → Physics Injection → Final Prediction
+Saved as:
+```bash
+preds.npy
+```
+## Key Innovations
+
+- Physics-informed AI (not pure ML)
+- Advection-based pollutant transport
+- Global attention for spatial reasoning
+- Robust multi-month generalization
+
+## Model Checkpoint
+
+We provide trained model weights for reproducibility:
+
+Hugging Face: https://huggingface.co/jc-kirthi/genius-child-pm25
+
+## License
+
+This project follows ANRF Open License as per hackathon guidelines.
+
+## Future Improvements
+- Real-time forecasting system
+- Web dashboard integration
+- Multi-city deployment
